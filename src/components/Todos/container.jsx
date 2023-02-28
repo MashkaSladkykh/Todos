@@ -25,9 +25,9 @@ export const Todos = () => {
     const handleAddTodo = () => {
       const { enterTitleTodo, enterDescriptionTodo, todos } = state;
       const newTodo = {
-        id: Math.round(Math.random() * 100),
-        title: enterTitleTodo,
-        description: enterDescriptionTodo,
+        id: new Date().getMilliseconds(),
+        titleValue: enterTitleTodo,
+        descriptionValue: enterDescriptionTodo,
         checked: false,
       }
       if(enterTitleTodo && enterDescriptionTodo !== ''){    

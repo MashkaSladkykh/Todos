@@ -1,4 +1,5 @@
-import { EnterTodo } from "./EnterTodo/component"
+import { EnterTodo } from "./EnterTodo/component";
+import { TodosList } from "./List/component";
 
 export const TodosComponent = ({ enterTitleTodo, enterDescriptionTodo, todos, isTodosEmpty, onEnterTitleTodo, onEnterDescriptionTodo, onAddTodo, onRemoveTodo, onCheckTodo }) => (
   <div>
@@ -10,6 +11,16 @@ export const TodosComponent = ({ enterTitleTodo, enterDescriptionTodo, todos, is
       onDescriptionChange={onEnterDescriptionTodo}
       onClick={onAddTodo}
     />
+     {isTodosEmpty
+      ? <div>THERE IS NOTHING HERE</div>
+      : (
+        <TodosList
+          todos={todos}
+          onRemoveTodo={onRemoveTodo}
+          onCheckTodo = {onCheckTodo}
+        />
+      )
+    }
 
 
   </div>

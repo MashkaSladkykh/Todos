@@ -14,8 +14,8 @@ export const EnterTodo = ({ titleValue, descriptionValue, onTitleChange, onDescr
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="Title" variant="outlined" value={titleValue} onChange={onTitleChange}/>
-      <TextField id="outlined-basic" label="Decription" variant="outlined" value={descriptionValue} onChange={onDescriptionChange}/>
+      <TextField required id="outlined-basic" label="Title" variant="outlined" value={titleValue} onChange={onTitleChange}/>
+      <TextField required id="outlined-basic" label="Decription" variant="outlined" value={descriptionValue} onChange={onDescriptionChange}/>
       <Button variant="contained" className='button' onClick={onClick}>Create</Button>
     </Box>
   );
