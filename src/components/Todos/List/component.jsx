@@ -13,7 +13,7 @@ import {connect} from 'react-redux';
 
 import {selectTodos} from '../../../store/todos/selectors';
 
-import { TodoItemRedux } from './Item/component';
+import { ConnectedTodoItem } from './Item/component';
 
 const TodosList = ({todos}) => {
   const createData = (checked, id, title, description) => ({ 
@@ -39,7 +39,7 @@ const TodosList = ({todos}) => {
   return (
     <>
       {todos.length === 0 ? 
-        <h1>There is nothig to do</h1> :
+        <h2>There is nothig to do</h2> :
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -53,7 +53,7 @@ const TodosList = ({todos}) => {
             </TableHead>
             <TableBody>
               {rows.map(row => (
-                <TodoItemRedux
+                <ConnectedTodoItem
                   key={row.id}
                   rows={rows}
                   row={row} />
@@ -70,4 +70,4 @@ const mapStateToProps = state => ({
   todos: selectTodos(state),
 });
 
-export const TodosListRedux = connect(mapStateToProps)(TodosList);
+export const ConnectedTodosList = connect(mapStateToProps)(TodosList);

@@ -43,4 +43,4 @@ const mapDispatchToProps = {
   removeTodo,
 };
 
-export const TodoItemRedux = connect(mapStateToProps, mapDispatchToProps)(TodoItem);
+export const ConnectedTodoItem = connect(mapStateToProps, mapDispatchToProps)(TodoItem);

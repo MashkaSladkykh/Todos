@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import {connect} from 'react-redux';
+import { useState } from 'react';
 
 import {selectTodos, selectEnterTitleTodo, selectEnterDescriptionTodo} from '../../../store/todos/selectors';
 import {addTodo, setEnterTitleTodo, setEnterDescriptionTodo, checkTodo, removeTodo} from '../../../store/todos/actions';
@@ -14,12 +15,24 @@ const EnterTodo = ({ enterTitleTodo,
   setEnterDescriptionTodo,
   addTodo  }) => {
 
+  const [error, setError] = useState(false);
+      
   const handleEnterTitleTodo = e => {
     setEnterTitleTodo(e.target.value);
+    if(e.target.value === '') {
+      setError(true);
+    } else {
+      setError(false);
+    }
   };
   
   const handleEnterDescriptionTodo = e => {
     setEnterDescriptionTodo(e.target.value);
+    if(e.target.value === '') {
+      setError(true);
+    } else {
+      setError(false);
+    }
   };
       
   const handleAddTodo = () => {
@@ -29,9 +42,13 @@ const EnterTodo = ({ enterTitleTodo,
       descriptionValue: enterDescriptionTodo,
       checked: false,
     };
-    setEnterTitleTodo('');
-    setEnterDescriptionTodo('');
-    addTodo(newTodo);
+    if(enterTitleTodo && enterDescriptionTodo !== '') {
+      setEnterTitleTodo('');
+      setEnterDescriptionTodo('');
+      addTodo(newTodo);
+    } else{
+      setError(true);
+    }
   };
   
   return (
@@ -47,12 +64,14 @@ const EnterTodo = ({ enterTitleTodo,
         required id="outlined-basic" 
         label="Title" variant="outlined" 
         value={enterTitleTodo} 
+        error={error}
         onChange={handleEnterTitleTodo}/>
       <TextField 
         required 
         id="outlined-basic" 
         label="Decription" 
         variant="outlined" 
+        error={error}
         value={enterDescriptionTodo} 
         onChange={handleEnterDescriptionTodo}/>
       <Button variant="contained" className="button" onClick={handleAddTodo}>Create</Button>
