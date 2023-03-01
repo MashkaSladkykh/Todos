@@ -19,14 +19,14 @@ const EnterTodo = ({ enterTitleTodo,
       
   const handleEnterTitleTodo = e => {
     setEnterTitleTodo(e.target.value);
-    setErrors({...errors, title: e.target.value.length < 3})
+    setErrors({...errors, title: e.target.value.length < 3});
   };
   
   const handleEnterDescriptionTodo = e => {
     setEnterDescriptionTodo(e.target.value);
-    setErrors({...errors, description: e.target.value.length < 3})
+    setErrors({...errors, description: e.target.value.length < 3});
   };
-      console.log(errors)
+  console.log(errors);
   const handleAddTodo = () => {
     const newTodo = {
       id: new Date().getMilliseconds(),
