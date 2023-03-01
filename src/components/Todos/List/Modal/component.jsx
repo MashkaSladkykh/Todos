@@ -16,7 +16,7 @@ export const ModalTodo = ({open, onClose, todo}) => {
     boxShadow: 24,
     p: 4,
   };
-
+  
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -30,13 +30,13 @@ export const ModalTodo = ({open, onClose, todo}) => {
           <CloseIcon />
         </IconButton>
         <Typography id="modal-modal-title" variant="h6" component="h2">
-          {todo.title}
+          Title: {todo.title}
         </Typography>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          {todo.description}
+          Description: {todo.description}
         </Typography>
         <Typography id="modal-modal-checked" sx={{ mt: 2 }}>
-          {`status: ${todo.checked ? 'done' : 'not done'}`}
+          {todo.checked ? 'Status: done' : 'Status: not done'}
         </Typography>
       </Box>
     </Modal>

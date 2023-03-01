@@ -11,37 +11,29 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-import { ModalTodo } from './Modal/component';
+import { TodoItemRedux } from './Item/component';
 
-
-export const TodosList = ({todos, onRemoveTodo, onCheckTodo}) => {
-  const [activeTodo, setActiveTodo] = useState({});
+export const TodosList = ({todos}) => {
   const createData = (checked, id, title, description) => ({ 
-    checked:<Checkbox checked={checked}  onClick={e => onCheckTodo(e, id)} /> ,
+    check:<Checkbox checked={checked} /> ,
+    checked,
     id, 
     title, 
     description, 
     remove:  <ListItemIcon>
-      <IconButton aria-label="delete" onClick={e => onRemoveTodo(e, id)}>
+      <IconButton aria-label="delete">
         <DeleteIcon />
       </IconButton>
     </ListItemIcon>,                
   });
 
-  const rows = todos.map(({id, titleValue, descriptionValue, checked}) => createData(checked, id, titleValue, descriptionValue));
-
-  const [open, setOpen] = useState(false);
-
-
-  const handleRowClick = row => {
-    setActiveTodo(row);
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+  const rows = todos.map(({
+    id, 
+    titleValue, 
+    descriptionValue, 
+    checked,
+  }) => createData(checked, id, titleValue, descriptionValue));
+ 
   return (
     <>
       <TableContainer component={Paper}>
@@ -57,22 +49,14 @@ export const TodosList = ({todos, onRemoveTodo, onCheckTodo}) => {
           </TableHead>
           <TableBody>
             {rows.map(row => (
-              <TableRow
+              <TodoItemRedux
                 key={row.id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                onClick={() => handleRowClick(row)}
-              >
-                <TableCell align="right">{row.checked}</TableCell>
-                <TableCell align="right" >{rows.indexOf(row) + 1}</TableCell>
-                <TableCell align="right" >{row.title}</TableCell>
-                <TableCell align="right" >{row.description}</TableCell>  
-                <TableCell align="right">{row.remove}</TableCell>
-              </TableRow>
+                rows={rows}
+                row={row} />
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <ModalTodo open={open} onClose={handleClose} todo={activeTodo} />
     </>
   );
 };

@@ -40,7 +40,7 @@ export const todos = (state = initialState, action) => {
   case SET_ACTIVE_TODO:
     return {
       ...state,
-      activeTodo: state.items.filter(todo => action.payload === todo.id),
+      activeTodo: action.payload,
     };
   case REMOVE_TODO:
     return {

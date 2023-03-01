@@ -14,7 +14,7 @@ const Todos = ({
   setEnterDescriptionTodo, 
   checkTodo, 
   removeTodo,
-  }) => {
+}) => {
   
   const handleEnterTitleTodo = e => {
     setEnterTitleTodo(e.target.value);

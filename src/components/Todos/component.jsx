@@ -8,9 +8,7 @@ export const TodosComponent = ({
   isTodosEmpty, 
   onEnterTitleTodo, 
   onEnterDescriptionTodo, 
-  onAddTodo, 
-  onRemoveTodo, 
-  onCheckTodo,
+  onAddTodo,
 }) => (
   <div>
     <h1>Todos</h1>
@@ -26,12 +24,8 @@ export const TodosComponent = ({
       : (
         <TodosList
           todos={todos}
-          onRemoveTodo={onRemoveTodo}
-          onCheckTodo = {onCheckTodo}
         />
       )
     }
-
-
   </div>
 );
