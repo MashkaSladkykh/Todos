@@ -1,10 +1,10 @@
 import './App.css';
-import { TodosRedux } from './components/Todos/container';
+import { Todos } from './components/Todos/component';
 
 function App() {
   return (
     <div className="App">
-      <TodosRedux/>
+      <Todos/>
     </div>
   );
 }

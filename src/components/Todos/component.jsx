@@ -1,31 +1,26 @@
-import { EnterTodo } from './EnterTodo/component';
+import {connect} from 'react-redux';
+
+import {selectTodos} from '../../store/todos/selectors';
+
+import { ConnectedEnterTodo } from './EnterTodo/component';
 import { TodosList } from './List/component';
 
-export const TodosComponent = ({ 
-  enterTitleTodo, 
-  enterDescriptionTodo, 
+const TodosComponent = ({ 
   todos, 
-  isTodosEmpty, 
-  onEnterTitleTodo, 
-  onEnterDescriptionTodo, 
-  onAddTodo,
 }) => (
   <div>
     <h1>Todos</h1>
-    <EnterTodo
-      titleValue={enterTitleTodo}
-      descriptionValue={enterDescriptionTodo}
-      onTitleChange={onEnterTitleTodo}
-      onDescriptionChange={onEnterDescriptionTodo}
-      onClick={onAddTodo}
+    <ConnectedEnterTodo
     />
-    {isTodosEmpty
-      ? <div>THERE IS NOTHING HERE</div>
-      : (
-        <TodosList
-          todos={todos}
-        />
-      )
-    }
+    <TodosList
+      todos={todos}
+    /> 
   </div>
 );
+   
+ 
+const mapStateToProps = state => ({
+  todos: selectTodos(state),
+});
+
+export const Todos = connect(mapStateToProps)(TodosComponent);

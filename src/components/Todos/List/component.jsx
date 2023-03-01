@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import IconButton from '@mui/material/IconButton';
@@ -36,27 +35,30 @@ export const TodosList = ({todos}) => {
  
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="right">Status</TableCell>
-              <TableCell align="right">Id</TableCell>
-              <TableCell align="right">Title</TableCell>
-              <TableCell align="right">Description</TableCell>
-              <TableCell align="right">Delete</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map(row => (
-              <TodoItemRedux
-                key={row.id}
-                rows={rows}
-                row={row} />
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      {todos.length === 0 ? 
+        <h1>There is nothig to do</h1> :
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="right">Status</TableCell>
+                <TableCell align="right">Id</TableCell>
+                <TableCell align="right">Title</TableCell>
+                <TableCell align="right">Description</TableCell>
+                <TableCell align="right">Delete</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map(row => (
+                <TodoItemRedux
+                  key={row.id}
+                  rows={rows}
+                  row={row} />
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      }
     </>
   );
 };
