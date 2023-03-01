@@ -1,0 +1,6 @@
+export const ADD_TODO = 'ADD_TODO';
+export const SET_ENTER_DESCRIPTION_TODO = 'SET_ENTER_DESCRIPTION_TODO';
+export const REMOVE_TODO = 'REMOVE_TODO';
+export const SET_ENTER_TITLE_TODO = 'SET_ENTER_TODO';
+export const SET_ACTIVE_TODO = 'SET_ACTIVE_TODO';
+export const CHECK_TODO = 'CHECK_TODO';
