@@ -15,26 +15,18 @@ const EnterTodo = ({ enterTitleTodo,
   setEnterDescriptionTodo,
   addTodo  }) => {
 
-  const [error, setError] = useState(false);
+  const [errors, setErrors] = useState({title: false, description: false});
       
   const handleEnterTitleTodo = e => {
     setEnterTitleTodo(e.target.value);
-    if(e.target.value === '') {
-      setError(true);
-    } else {
-      setError(false);
-    }
+    setErrors({...errors, title: e.target.value.length < 3})
   };
   
   const handleEnterDescriptionTodo = e => {
     setEnterDescriptionTodo(e.target.value);
-    if(e.target.value === '') {
-      setError(true);
-    } else {
-      setError(false);
-    }
+    setErrors({...errors, description: e.target.value.length < 3})
   };
-      
+      console.log(errors)
   const handleAddTodo = () => {
     const newTodo = {
       id: new Date().getMilliseconds(),
@@ -42,12 +34,10 @@ const EnterTodo = ({ enterTitleTodo,
       descriptionValue: enterDescriptionTodo,
       checked: false,
     };
-    if(enterTitleTodo && enterDescriptionTodo !== '') {
+    if(enterTitleTodo.length > 2 && enterDescriptionTodo.length > 2) {
       setEnterTitleTodo('');
       setEnterDescriptionTodo('');
       addTodo(newTodo);
-    } else{
-      setError(true);
     }
   };
   
@@ -64,14 +54,14 @@ const EnterTodo = ({ enterTitleTodo,
         required id="outlined-basic" 
         label="Title" variant="outlined" 
         value={enterTitleTodo} 
-        error={error}
+        error={errors.title}
         onChange={handleEnterTitleTodo}/>
       <TextField 
         required 
         id="outlined-basic" 
         label="Decription" 
         variant="outlined" 
-        error={error}
+        error={errors.description}
         value={enterDescriptionTodo} 
         onChange={handleEnterDescriptionTodo}/>
       <Button variant="contained" className="button" onClick={handleAddTodo}>Create</Button>

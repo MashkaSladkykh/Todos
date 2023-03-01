@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "https://MashkaSladkykh.github.io/Todos",
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.11",
     "@mui/utils": "^5.11.11",
