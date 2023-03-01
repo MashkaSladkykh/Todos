@@ -9,10 +9,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import {connect} from 'react-redux';
+
+import {selectTodos} from '../../../store/todos/selectors';
 
 import { TodoItemRedux } from './Item/component';
 
-export const TodosList = ({todos}) => {
+const TodosList = ({todos}) => {
   const createData = (checked, id, title, description) => ({ 
     check:<Checkbox checked={checked} /> ,
     checked,
@@ -62,3 +65,9 @@ export const TodosList = ({todos}) => {
     </>
   );
 };
+ 
+const mapStateToProps = state => ({
+  todos: selectTodos(state),
+});
+
+export const TodosListRedux = connect(mapStateToProps)(TodosList);
